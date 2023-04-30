@@ -13,13 +13,13 @@ module.exports = {
     filenameHashing: false,
     pages: {
         popup: {
-            entry: 'src/popup.js',
+            entry: 'src/main.js',
             template: 'public/popup.html',
         },
-        background: {
-            entry: 'src/background.js',
-            template: 'public/background.html',
-        },
+        // background: {
+        //     entry: 'src/background.js',
+        //     template: 'public/background.html',
+        // },
     },
     // 开发的时候为 true, 发布时为 false
     productionSourceMap: 'development' === process.env.NODE_ENV,
@@ -27,6 +27,7 @@ module.exports = {
         plugins: [
             new CopyWebpackPlugin([
                 { from: 'public/manifest.json', to: 'manifest.json', },
+                { from: 'public/assets/content.js', to: 'content.js', },
                 { from: 'src/image/*.png', to: 'image/[name].png', },
             ]),
         ],
