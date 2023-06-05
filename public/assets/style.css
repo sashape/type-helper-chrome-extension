@@ -1,0 +1,18 @@
+.loader-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.loader {
+    display: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    background: aliceblue;
+    transition: .3s;
+}
+.loader.load {
+    background: #02ad2a;
+    transition: .3s;
+}

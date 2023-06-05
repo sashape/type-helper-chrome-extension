@@ -33,6 +33,14 @@
         <button
             @click="openTab('account')"
             type="submit" id="submit" class="btn btn-primary outline"><i class="fas fa-sign-in-alt"></i>Account</button>
+
+        <input type="text">
+        <div
+            @click="loaded = !loaded"
+            :class="{'loaded': loaded}"
+            class="loader">
+          <div class="drop"></div>
+        </div>
       </div>
     </div>
 
@@ -46,16 +54,19 @@ export default {
     components: {
     },
     data: () => ({
+        host: 'type.1291053-ck68557.tw1.ru',
         email: '',
         pass: '',
-        encryptString: ''
+        encryptString: '',
+        loaded: false
     }),
     methods: {
         openTab(url) {
+            console.log(this.$root)
             // const queryParams = this.formatQueryParams({ email: this.email, password: this.pass });
             // const queryParamsEncrypt = this.formatQueryParams({ request: CryptoJS.AES.encrypt(queryParams, 'secret')});
             // const url = `https://example.com/login?${this.formatQueryParams(queryParamsEncrypt)}`;
-            window.open(`https://example.com/${url}`, '_blank');
+            // window.open(`https://example.com/${url}`, '_blank');
         },
         // formatQueryParams(params) {
         //     return Object.keys(params)
@@ -88,3 +99,61 @@ export default {
 
 }
 </script>
+<style>
+.loader {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+    animation: rotate 2s linear infinite;
+    overflow: hidden;
+}
+
+.drop {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: #007bff;
+    border-radius: 50%;
+    animation: drop 2s ease-in-out infinite;
+}
+.loader.loaded .drop {
+    animation: fill 0.5s ease-out forwards;
+}
+.loader.loaded .drop {
+     animation: fill 0.5s ease-out forwards;
+ }
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes drop {
+    0% {
+        transform: translate(-50%, -50%) translateX(0) rotate(0deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateX(-calc(25px * cos(45deg))) rotate(180deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) translateX(0) rotate(360deg);
+    }
+}
+
+@keyframes fill {
+    0% {
+        transform: translate(-50%, -50%) translateX(-20px) scale(1);
+    }
+    100% {
+        transform: translate(-50%, -50%) translateX(-20px) scale(20);
+    }
+}
+</style>
